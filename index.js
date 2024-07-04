@@ -24,6 +24,13 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+const messageCollection = client.db('usermessage').collection('messageme');
+    app.post('/message',async(req,res)=>{
+        const message=req.body;
+        const result=await messageCollection.insertOne(message)
+        res.send(result);
+        
+    })
     // Connect the client to the server	(optional starting in v4.7)
    
     // Send a ping to confirm a successful connection
